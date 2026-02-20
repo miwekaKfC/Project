@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+y = [5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5]
+x = [39, 43, 47, 50, 54, 58, 62, 66, 70, 73, 76, 79, 83]
+
+plt.scatter(x, y)
+
+k, b = np.polyfit(x, y, 1)
+
+x_line = np.linspace(0, max(x), 100)
+y_line = k * x_line + b
+
+plt.plot(x_line, y_line, color='red', linewidth=2, label=f'Аппроксимация: y = {k:.3f}x + {b:.3f}')
+
+plt.xlim(xmin=0)  
+plt.ylim(ymin=0)  
+
+plt.xlabel('X, Гц')
+plt.ylabel('U, В')
+
+
+plt.show()
+
+print(f"Уравнение аппроксимирующей прямой: y = {k:.3f}x + {b:.3f}")
