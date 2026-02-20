@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+y = np.array([5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5])
+x = np.array([39, 43, 47, 50, 54, 58, 62, 66, 70, 73, 76, 79, 83])
+
+R = 7.5
+I = np.array([0.085, 0.085, 0.085, 0.095, 0.096, 0.096, 0.096, 0.1, 0.105, 0.115, 0.133, 0.14, 0.2]) 
+
+y_corrected = y - I * R
+
+k, b = np.polyfit(y_corrected, y, 1)
+
+plt.scatter(y_corrected, y, color='blue', label='Данные (скорр.)')
+
+x_line = np.linspace(0, 13, 100)
+plt.plot(x_line, k * x_line + b, color='red', label=f'y = {k:.2f}x + {b:.2f}')
+
+
+plt.xlim(xmin=0)
+plt.ylim(ymin=0)
+
+plt.xlabel('X, Гц')
+plt.ylabel('U − I·R, B')
+plt.legend()
+
+
+plt.show()
+
+print(f"Уравнение: y = {k:.4f}x + {b:.4f}")
